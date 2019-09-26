@@ -15,7 +15,7 @@ router.get("/", function(req, res) {
 });
 
 router.post("/api/customer", function (req, res) {
-    cat.create(
+    customer.create(
       ["fname", "lname", "phone", "address", "zip", "city", "country", "userpassword"],
       [req.body.fname, req.body.lname, req.body.address, req.body.zip, req.body.city, req.body.country, req.body.password], 
       function (result) {
@@ -28,7 +28,7 @@ router.post("/api/customer", function (req, res) {
   
     console.log("condition", condition);
   
-    cat.update(
+    customer.update(
       {
         fname: req.body.fname,
         lname: req.body.lname,
