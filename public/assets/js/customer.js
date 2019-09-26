@@ -12,6 +12,7 @@ $(function () {
             zip: $("#zip").val().trim(),
             country: $("#country").val().trim(),
             city: $("#city").val().trim(),
+            password: $("#password").val().trim(),
         };
 
         // Send the PUT request.
@@ -38,6 +39,7 @@ $(function () {
             zip: $("#zip").val().trim(),
             country: $("#country").val().trim(),
             city: $("#city").val().trim(),
+            password: $("#password").val().trim(),
         };
 
         // Send the POST request.
