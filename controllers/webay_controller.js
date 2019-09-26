@@ -5,13 +5,9 @@ var router = express.Router();
 var customer = require("../models/webay.js");
 
 router.get("/", function(req, res) {
-  cusro.all(function(data) {
-    var hbsObject = {
-        customer: data
-    };
-    console.log(hbsObject);
-    res.render("index", hbsObject);
-  });
+  
+    res.render("index");
+
 });
 
 router.post("/api/customer", function (req, res) {
