@@ -17,6 +17,10 @@ router.get("/login", function (req, res) {
   res.render("login")
 });
 
+router.get("/account", function (req, res) {
+  res.render("account")
+});
+
 router.get("/register", function (req, res) {
   res.render("register")
 });
@@ -25,9 +29,11 @@ router.get("/cart", function (req, res) {
   res.render("cart")
 });
 
+
+
 // Export routes for server.js to use
 
-var customer = require("../models/webay.js");
+var customer = require("../models/customer.js");
 
 router.get("/", function (req, res) {
 
