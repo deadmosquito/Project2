@@ -11,8 +11,8 @@
     "mysql": "^2.17.1",
     "mysql2": "^1.7.0",
     "path": "^0.12.7",
-    "sequelize": "^5.19.0"
-
+    "sequelize": "^5.19.0",
+    "usps-web-tools-node-sdk": "^0.6.1"
   },
   "devDependencies": {},
   "scripts": {
