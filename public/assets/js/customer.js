@@ -52,7 +52,9 @@ $(function () {
                 // Reload the page to get the updated list
                 location.reload();
             }
-        );
+        ).catch(function(err){
+            console.log(err)
+        })
     });
 
     $(".delete-customer").on("click", function (event) {
