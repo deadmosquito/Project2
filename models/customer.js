@@ -2,11 +2,11 @@ module.exports = function(sequelize, DataTypes) {
     var Customer = sequelize.define("customer", {
       fname: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
       },
       lname: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: true
         
       },
       email: {
@@ -24,27 +24,27 @@ module.exports = function(sequelize, DataTypes) {
       },
       address: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: true
         
       },
       city: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: true
         
       },
       zip: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: true
         
       },
       country: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: true
         
       },
       userpassword: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: true
       },
 
     });

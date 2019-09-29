@@ -1,43 +1,52 @@
-const db = require("../models");
-const express = require('express');
-const router = express.Router();
+var db = require("../models");
+var express = require('express');
+var router = express.Router();
 
-// Find all Authors and return them to the user with res.json
 router.get("/api/customers", function (req, res) {
-  db.Customer.findAll({
+  db.customer.findAll({
     include: [db.Post]
-  }).then(function (dbAuthor) {
-    res.json(dbAuthor);
+  }).then(function (dbCustomer) {
+    res.json(dbCustomer);
   });
 });
 
 router.get("/api/customers/:id", function (req, res) {
-  // Find one Author with the id in req.params.id and return them to the user with res.json
-  db.Customer.findOne({
+  db.customer.findOne({
     where: {
       id: req.params.id
     }
-  }).then(function (dbAuthor) {
-    res.json(dbAuthor);
+  }).then(function (dbCustomer) {
+    res.json(dbCustomer);
   });
 });
 
 router.post("/api/customers", function (req, res) {
-  // Create an Author with the data available to us in req.body
   console.log(req.body);
-  db.Customer.create(req.body).then(function (dbAuthor) {
-    res.json(dbAuthor);
+  db.customer.create({
+      fname: req.body.fname,
+      lname: req.body.lname,
+      email: req.body.email,
+      address: req.body.address,
+      city: req.body.city,
+      zip: req.body.zip,
+      country: req.body.country,
+      userpassword: req.body.userpassword,
+      phone: req.body.phone
+    }).then(function (dbCustomer) {
+    res.json(dbCustomer);
+  }).catch(function(err)
+  {
+    console.log(err)
   });
 });
 
 router.delete("/api/customers/:id", function (req, res) {
-  // Delete the Author with the id available to us in req.params.id
-  db.Customer.destroy({
+  db.customer.destroy({
     where: {
       id: req.params.id
     }
-  }).then(function (dbAuthor) {
-    res.json(dbAuthor);
+  }).then(function (dbCustomer) {
+    res.json(dbCustomer);
   });
 });
 

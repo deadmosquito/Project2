@@ -1,5 +1,6 @@
 // Make sure we wait to attach our handlers until the DOM is fully loaded.
 $(function () {
+
     $(".change-item").on("click", function (event) {
         var id = $(this).data("id");
 
@@ -27,21 +28,21 @@ $(function () {
         );
     });
 
-    $(".create-form").on("submit", function (event) {
+    $("#create-form").on("click", function (event) {
         // Make sure to preventDefault on a submit event.
         event.preventDefault();
 
         var newCustomer = {
             fname: $("#fname").val().trim(),
-            lname: $("#lname").val().trim(),
-            phone: $("#phone").val().trim(),
+            //lname: $("#lname").val().trim(),
+           // phone: $("#phone").val().trim(),
             email: $("#email").val().trim(),
-            zip: $("#zip").val().trim(),
-            country: $("#country").val().trim(),
-            city: $("#city").val().trim(),
+           // zip: $("#zip").val().trim(),
+           // country: $("#country").val().trim(),
+           // city: $("#city").val().trim(),
             password: $("#password").val().trim(),
         };
-
+       
         // Send the POST request.
         $.ajax("/api/customers", {
             type: "POST",
@@ -52,7 +53,7 @@ $(function () {
                 // Reload the page to get the updated list
                 location.reload();
             }
-        ).catch(function(err){
+        ).catch(function (err) {
             console.log(err)
         })
     });
