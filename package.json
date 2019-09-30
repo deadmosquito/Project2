@@ -1,6 +1,9 @@
 {
   "name": "project2",
   "version": "1.0.0",
+  "engines": {
+    "node": "10.3.0"
+  },
   "description": "### Setup",
   "main": "server.js",
   "scripts": {
