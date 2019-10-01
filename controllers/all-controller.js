@@ -2,14 +2,18 @@ var db = require("../models");
 var express = require('express');
 var router = express.Router();
 
-router.get("/api/customers", function (req, res) {
-  db.customer.findAll({
-    include: [db.Post]
-  }).then(function (dbCustomer) {
-    res.json(dbCustomer);
-  });
+/////////////////////////Routing For Product APIs////////////////////////////////////////
+router.get("/", function(req, res) {
+  db.customer.findAll({})
+    .then(function(dbProduct) {
+      console.log(dbProduct)
+      var hbsObject = {
+        products: dbProduct
+      };
+      res.render("index",hbsObject);
+    });
 });
-
+/////////////////////////Routing For Customer APIs////////////////////////////////////////
 router.get("/api/customers/:id", function (req, res) {
   db.customer.findOne({
     where: {
