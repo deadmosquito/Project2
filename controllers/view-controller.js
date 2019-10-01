@@ -34,19 +34,9 @@ router.get("/cart", function (req, res) {
   res.render('cart');
 });
 
+router.get("/login", function (req, res) {
+  res.render('login');
+});
 
-// helper for / and blog routes
-function renderBlog(req, res) {
-  var query = {};
-  if (req.query.author_id) {
-    query.AuthorId = req.query.author_id;
-  }
-  db.Post.findAll({
-    where: query,
-    include: [db.Author]
-  }).then(function (posts) {
-    res.render('blog', { posts: posts })
-  });
-}
 
 module.exports = router;
