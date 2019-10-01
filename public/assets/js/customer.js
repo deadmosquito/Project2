@@ -34,13 +34,13 @@ $(function () {
 
         var newCustomer = {
             fname: $("#fname").val().trim(),
-            //lname: $("#lname").val().trim(),
-           // phone: $("#phone").val().trim(),
+            lname: $("#lname").val().trim(),
+            phone: $("#phone").val().trim(),
             email: $("#email").val().trim(),
-           // zip: $("#zip").val().trim(),
-           // country: $("#country").val().trim(),
-           // city: $("#city").val().trim(),
-            password: $("#password").val().trim(),
+            zip: $("#zip").val().trim(),
+            country: $("#country").val().trim(),
+            city: $("#city").val().trim(),
+            userpassword: $("#password").val().trim(),
         };
        
         // Send the POST request.
