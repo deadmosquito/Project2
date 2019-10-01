@@ -18,10 +18,6 @@ router.get("/", function (req, res) {
   res.render('index');
 });
 
-router.get("/collection", function (req, res) {
-  res.render('collection');
-});
-
 router.get("/contact", function (req, res) {
   res.render('contact');
 });
