@@ -14,16 +14,24 @@ const db = require("../models");
 
 // Each of the below routes just handles the HTML page that the user gets sent to.
 
+router.get("/", function (req, res) {
+  res.render('index');
+});
 
+router.get("/collection", function (req, res) {
+  res.render('collection');
+});
 
+router.get("/contact", function (req, res) {
+  res.render('contact');
+});
 
-// cms route loads cms.html
 router.get("/register", function (req, res) {
   res.render('register');
 });
 
-router.get("/", function (req, res) {
-  res.render('index');
+router.get("/cart", function (req, res) {
+  res.render('cart');
 });
 
 
