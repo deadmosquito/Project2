@@ -4,12 +4,13 @@ var router = express.Router();
 
 /////////////////////////Routing For Product APIs////////////////////////////////////////
 router.get("/", function(req, res) {
-  db.customer.findAll({})
+  db.product.findAll({})
     .then(function(dbProduct) {
-      console.log(dbProduct)
+      //console.log(dbProduct)
       var hbsObject = {
         products: dbProduct
       };
+     // console.log(hbsObject.products)
       res.render("index",hbsObject);
     });
 });
