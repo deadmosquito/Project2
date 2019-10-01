@@ -42,7 +42,7 @@ $(function () {
             city: $("#city").val().trim(),
             userpassword: $("#password").val().trim(),
         };
-       
+
         // Send the POST request.
         $.ajax("/api/customers", {
             type: "POST",
@@ -67,6 +67,19 @@ $(function () {
         }).then(
             function () {
                 console.log("deleted customer", id);
+                // Reload the page to get the updated list
+                location.reload();
+            }
+        );
+    });
+
+    $(".add-to-cart").on("click", function (event) {
+        var id = $(this).data("id");
+
+        $.ajax("/api/cart/" + id, {
+            type: "POST"
+        }).then(
+            function () {
                 // Reload the page to get the updated list
                 location.reload();
             }
