@@ -5,17 +5,32 @@ var bcrypt = require('bcrypt');
 const saltRounds = 12;
 
 /////////////////////////Routing For Product APIs////////////////////////////////////////
-router.get("/", function(req, res) {
+router.get("/", function (req, res) {
   db.product.findAll({})
-    .then(function(dbProduct) {
+    .then(function (dbProduct) {
       //console.log(dbProduct)
       var hbsObject = {
         products: dbProduct
       };
-     // console.log(hbsObject.products)
-      res.render("index",hbsObject);
+      // console.log(hbsObject.products)
+      res.render("index", hbsObject);
     });
 });
+router.get("/cart/:id", function (req, res) {
+  db.product.findOne({
+    where: {
+      id: req.params.id
+    }
+  }).then(function (dbProduct) {
+    var hbsObject = {
+      product: dbProduct
+    };
+    //console.log(hbsObject.product)
+    res.render("cart", hbsObject);
+  }).catch(function (err) {
+    //console.log(err)
+  })
+})
 /////////////////////////Routing For Customer APIs////////////////////////////////////////
 router.get("/api/customers/:id", function (req, res) {
   db.customer.findOne({
