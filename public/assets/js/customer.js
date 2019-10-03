@@ -59,6 +59,26 @@ $(function () {
         })
     });
 
+    $(".login").on("click", function (event) {
+        // Make sure to preventDefault on a submit event.
+        event.preventDefault();
+
+        var credentials = {
+          email: $("#email").val().trim(),
+           userpassword: $("#password").val().trim(),
+        };
+       
+        // Send the POST request.
+        $.ajax("/api/customers/login", {
+            type: "POST",
+            data: credentials
+        }
+        ).catch(function (err) {
+            console.log(err)
+        })
+    });
+
+
     $(".delete-customer").on("click", function (event) {
         var id = $(this).data("id");
 
