@@ -16,6 +16,21 @@ router.get("/", function (req, res) {
       res.render("index", hbsObject);
     });
 });
+router.get("/cart/:id", function (req, res) {
+  db.product.findOne({
+    where: {
+      id: req.params.id
+    }
+  }).then(function (dbProduct) {
+    var hbsObject = {
+      product: dbProduct
+    };
+    //console.log(hbsObject.product)
+    res.render("cart", hbsObject);
+  }).catch(function (err) {
+    //console.log(err)
+  })
+})
 /////////////////////////Routing For Customer APIs////////////////////////////////////////
 router.get("/api/customers/:id", function (req, res) {
   db.customer.findOne({
