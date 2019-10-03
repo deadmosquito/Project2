@@ -16,6 +16,7 @@ $(function () {
             city: $("#city").val().trim(),
             password: $("#password").val().trim(),
         };
+ 
 
         // Send the PUT request.
         $.ajax("/api/customers/" + id, {
@@ -43,6 +44,34 @@ $(function () {
             city: $("#city").val().trim(),
             userpassword: $("#password").val().trim(),
         };
+
+        fname = document.getElementById("fname").value;
+        lname = document.getElementById("lname").value;
+        phone = document.getElementById("phone").value;
+        email = document.getElementById("email").value;
+        zip = document.getElementById("zip").value;
+        country = document.getElementById("country").value;
+        city = document.getElementById("city").value;
+        password = document.getElementById("password").value;
+        errorModal = document.getElementById("errorMsg");
+    
+        if (fname || lname || phone || email || zip || country || city || password == "") {
+            errorModal.innerHTML = "Please Enter Proper Registration Information";        
+            if (fname || lname || phone || email || zip || country || city || password == "") {
+                //alert("Please enter registered owner's name");
+                document.getElementById("fname").style.borderColor = "red"
+                document.getElementById("lname").style.borderColor = "red"
+                document.getElementById("phone").style.borderColor = "red"
+                document.getElementById("email").style.borderColor = "red"
+                document.getElementById("zip").style.borderColor = "red"
+                document.getElementById("country").style.borderColor = "red"
+                document.getElementById("city").style.borderColor = "red"
+                document.getElementById("password").style.borderColor = "red"
+                document.getElementById("errorMsg").style.borderColor = "red"
+                return false;
+            }
+        }
+    
 
         // Send the POST request.
         $.ajax("/api/customers", {
