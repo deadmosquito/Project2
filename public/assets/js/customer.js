@@ -42,7 +42,7 @@ $(function () {
             city: $("#city").val().trim(),
             userpassword: $("#password").val().trim(),
         };
-       
+
         // Send the POST request.
         $.ajax("/api/customers", {
             type: "POST",
@@ -58,23 +58,39 @@ $(function () {
         })
     });
 
-    $(".login").on("click", function (event) {
+    $(".login").on("submit", function (event) {
         // Make sure to preventDefault on a submit event.
         event.preventDefault();
 
         var credentials = {
-          email: $("#email").val().trim(),
-           userpassword: $("#password").val().trim(),
+            email: $("#email").val().trim(),
+            userpassword: $("#password").val().trim(),
         };
-       
-        // Send the POST request.
+
+        //Send the POST request.
         $.ajax("/api/customers/login", {
-            type: "POST",
+            method: "POST",
             data: credentials
-        }
-        ).catch(function (err) {
+        }).then(function (response) {
+
+            if (response.success === true) {
+
+                window.location.href = "/";
+
+            } else if (response.success === false) {
+               
+               $(".error").show();
+
+            } else {
+
+window.location.href = "register";
+
+$()
+            }
+
+        }).catch(function (err) {
             console.log(err)
-        })
+        });
     });
 
 
@@ -92,4 +108,5 @@ $(function () {
             }
         );
     });
+
 });

@@ -5,15 +5,15 @@ var bcrypt = require('bcrypt');
 const saltRounds = 12;
 
 /////////////////////////Routing For Product APIs////////////////////////////////////////
-router.get("/", function(req, res) {
+router.get("/", function (req, res) {
   db.product.findAll({})
-    .then(function(dbProduct) {
+    .then(function (dbProduct) {
       //console.log(dbProduct)
       var hbsObject = {
         products: dbProduct
       };
-     // console.log(hbsObject.products)
-      res.render("index",hbsObject);
+      // console.log(hbsObject.products)
+      res.render("index", hbsObject);
     });
 });
 /////////////////////////Routing For Customer APIs////////////////////////////////////////
@@ -30,10 +30,10 @@ router.get("/api/customers/:id", function (req, res) {
 router.post("/api/customers", function (req, res) {
   console.log('-----')
   console.log(req.body);
-  
-  bcrypt.hash(req.body.userpassword, saltRounds, function (err,   hash) {
 
-  db.customer.create({
+  bcrypt.hash(req.body.userpassword, saltRounds, function (err, hash) {
+
+    db.customer.create({
       fname: req.body.fname,
       lname: req.body.lname,
       email: req.body.email,
@@ -46,35 +46,35 @@ router.post("/api/customers", function (req, res) {
     }).then(function (dbCustomer) {
       if (dbCustomer)
 
-    res.redirect("/");
+        res.redirect("/");
 
-  }).catch(function(err)
-  {
-    console.log(err)
+    }).catch(function (err) {
+      console.log(err)
+    });
   });
-});
 });
 router.post('/api/customers/login', function (req, res) {
   db.customer.findOne({
-       where: {
-           email: req.body.email
-              }
-  }).then(function (customer) {
-      if (!customer) {
-         res.redirect('/');
-      } else {
-bcrypt.compare(req.body.userpassword, customer.userpassword, function (err, result) {
-     if (result == true) {
-       console.log("success")
-         res.send('/register');
-     } else {
-      res.redirect('/register');
-      console.log("failed")
+    where: {
+      email: req.body.email
+    }
+  }).then(function (results) {
+    if (!results) {
 
-     }
-   });
-  }
-});
+ console.log(results)
+ 
+      return res.json({
+       success: results
+       })
+      
+    } else {
+      bcrypt.compare(req.body.userpassword, results.userpassword, function (err, result) {
+        return res.json({
+          success: result
+        })
+      });
+    }
+  });
 });
 
 router.delete("/api/customers/:id", function (req, res) {
