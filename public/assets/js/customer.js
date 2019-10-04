@@ -11,6 +11,7 @@ $(function () {
             city: $("#city").val().trim(),
             password: $("#password").val().trim(),
         };
+
         // Send the PUT request.
         $.ajax("/api/customers/" + id, {
             type: "PUT",
@@ -48,8 +49,10 @@ $(function () {
         password = document.getElementById("password").value;
         errorModal = document.getElementById("errorMsg");
 
+
         if (fname || lname || phone || email || zip || country || city || password == "") {
             errorModal.innerHTML = "Please Enter Proper Registration Information";
+
             if (fname || lname || phone || email || zip || country || city || password == "") {
                 //alert("Please enter registered owner's name");
                 document.getElementById("fname").style.borderColor = "red"
@@ -64,7 +67,6 @@ $(function () {
                 return false;
             }
         }
-
         // Send the POST request.
         $.ajax("/api/customers", {
             type: "POST",
@@ -80,7 +82,7 @@ $(function () {
         })
     });
 
-    $(".login").on("submit", function (event) {
+  $(".login").on("submit", function (event) {
         // Make sure to preventDefault on a submit event.
         event.preventDefault();
 
@@ -113,6 +115,7 @@ $(function () {
         });
     });
 
+
     $(".delete-customer").on("click", function (event) {
         var id = $(this).data("id");
 
@@ -127,6 +130,7 @@ $(function () {
             }
         );
     });
+
     ///////////////////SHIPPING CALCULATION////////////////////////////
     $(".calculate").on("click", function (event) {
         // Make sure to preventDefault on a submit event.

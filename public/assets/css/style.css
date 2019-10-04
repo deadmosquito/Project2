@@ -4,6 +4,7 @@
 }
 .error {
 display: none;
+
 }
 .addToCartHome{
     border: 1px solid navy;
@@ -18,4 +19,5 @@ display: none;
 }
 .logo{
     font-weight: bolder;
+
 }
