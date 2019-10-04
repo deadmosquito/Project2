@@ -1,9 +1,6 @@
 $(function () {
-
     $(".change-item").on("click", function (event) {
         var id = $(this).data("id");
-
-
         var newCustomer = {
             fname: $("#fname").val().trim(),
             lname: $("#lname").val().trim(),
@@ -14,7 +11,6 @@ $(function () {
             city: $("#city").val().trim(),
             password: $("#password").val().trim(),
         };
-
         // Send the PUT request.
         $.ajax("/api/customers/" + id, {
             type: "PUT",
@@ -42,6 +38,33 @@ $(function () {
             userpassword: $("#password").val().trim(),
         };
 
+        fname = document.getElementById("fname").value;
+        lname = document.getElementById("lname").value;
+        phone = document.getElementById("phone").value;
+        email = document.getElementById("email").value;
+        zip = document.getElementById("zip").value;
+        country = document.getElementById("country").value;
+        city = document.getElementById("city").value;
+        password = document.getElementById("password").value;
+        errorModal = document.getElementById("errorMsg");
+
+        if (fname || lname || phone || email || zip || country || city || password == "") {
+            errorModal.innerHTML = "Please Enter Proper Registration Information";
+            if (fname || lname || phone || email || zip || country || city || password == "") {
+                //alert("Please enter registered owner's name");
+                document.getElementById("fname").style.borderColor = "red"
+                document.getElementById("lname").style.borderColor = "red"
+                document.getElementById("phone").style.borderColor = "red"
+                document.getElementById("email").style.borderColor = "red"
+                document.getElementById("zip").style.borderColor = "red"
+                document.getElementById("country").style.borderColor = "red"
+                document.getElementById("city").style.borderColor = "red"
+                document.getElementById("password").style.borderColor = "red"
+                document.getElementById("errorMsg").style.borderColor = "red"
+                return false;
+            }
+        }
+
         // Send the POST request.
         $.ajax("/api/customers", {
             type: "POST",
@@ -57,7 +80,7 @@ $(function () {
         })
     });
 
-    $(".login").on("click", function (event) {
+    $(".login").on("submit", function (event) {
         // Make sure to preventDefault on a submit event.
         event.preventDefault();
 
@@ -68,14 +91,27 @@ $(function () {
 
         // Send the POST request.
         $.ajax("/api/customers/login", {
-            type: "POST",
+            method: "POST",
             data: credentials
-        }
-        ).catch(function (err) {
-            console.log(err)
-        })
-    });
+        }).then(function (response) {
 
+            if (response.success === true) {
+
+                window.location.href = "/";
+
+            } else if (response.success === false) {
+
+                $(".error").show();
+
+            } else {
+
+                window.location.href = "register";
+                $()
+            }
+        }).catch(function (err) {
+            console.log(err)
+        });
+    });
 
     $(".delete-customer").on("click", function (event) {
         var id = $(this).data("id");
@@ -119,22 +155,30 @@ $(function () {
         $.ajax(shippingAPI, {
             type: "GET"
         }).then(function (resultXLM) {
-            //var xmlToString = new XMLSerializer().serializeToString(resultXLM);
-           // var xmlStringToJason = JSON.stringify(xmlToString,2)
+
             var jsonText = JSON.stringify(xmlToJson(resultXLM));
             var jsonTextToStringiFy = JSON.parse(jsonText)
-            console.log(jsonTextToStringiFy.RateV4Response.Package.Postage.Rate['#text'])
+            var shippingPrice = parseFloat(jsonTextToStringiFy.RateV4Response.Package.Postage.Rate['#text']).toFixed(2)
+            var shippingService = jsonTextToStringiFy.RateV4Response.Package.Postage.MailService['#text']
+
+            $(".shippingRate").text("Priority Mail"+" $"+shippingPrice)
+            var productPrice =parseFloat($("#productPrice").val()).toFixed(2)
+            var tax= parseFloat(((productPrice*9)/100)).toFixed(2)
+            var total = (parseFloat(tax)+parseFloat(productPrice)+parseFloat(shippingPrice)).toFixed(2)
             
+            $(".tax").text(tax)
+            $(".total").text(total)
+    
 
             function xmlToJson(xml) {
-	
+
                 // Create the return object
                 var obj = {};
-            
+
                 if (xml.nodeType == 1) { // element
                     // do attributes
                     if (xml.attributes.length > 0) {
-                    obj["@attributes"] = {};
+                        obj["@attributes"] = {};
                         for (var j = 0; j < xml.attributes.length; j++) {
                             var attribute = xml.attributes.item(j);
                             obj["@attributes"][attribute.nodeName] = attribute.nodeValue;
@@ -143,16 +187,16 @@ $(function () {
                 } else if (xml.nodeType == 3) { // text
                     obj = xml.nodeValue;
                 }
-            
+
                 // do children
                 if (xml.hasChildNodes()) {
-                    for(var i = 0; i < xml.childNodes.length; i++) {
+                    for (var i = 0; i < xml.childNodes.length; i++) {
                         var item = xml.childNodes.item(i);
                         var nodeName = item.nodeName;
-                        if (typeof(obj[nodeName]) == "undefined") {
+                        if (typeof (obj[nodeName]) == "undefined") {
                             obj[nodeName] = xmlToJson(item);
                         } else {
-                            if (typeof(obj[nodeName].push) == "undefined") {
+                            if (typeof (obj[nodeName].push) == "undefined") {
                                 var old = obj[nodeName];
                                 obj[nodeName] = [];
                                 obj[nodeName].push(old);
@@ -163,38 +207,20 @@ $(function () {
                 }
                 return obj;
             };
-
-
-
-
-
-
-
             //var xmlToString = resultXLM.toString()
-           // console.log(xmlToString)
-            $.ajax("/api/shipping", {
+            // console.log(xmlToString)
+            /* $.ajax("/api/shipping", {
                 type: "POST",
-                data: jsonTextToStringiFy
-            }).then(function () {
+                data: newShipppin
+            }).then(function (shippingRes) {
                 console.log('sent')
+               
             }).catch(function (err) {
                 console.log(err)
-            });
+            }); */
         }).catch(function (err) {
             console.log(err)
         });
-        /* function sendShipping(x){
-            $.ajax("/api/shipping", {
-                type: "GET",
-                data: x
-            }).then(function () {
-                console.log("shipping sent")
-            }).catch(function (err) {
-                //console.log('here')
-                console.log(err)
-            })
-        } */
-
     })
 })
     ///////////////////////////////////////////////////////////////////
