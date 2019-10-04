@@ -2,7 +2,9 @@ var db = require("../models");
 var express = require('express');
 var router = express.Router();
 var bcrypt = require('bcrypt');
+var parseString = require('xml2js').parseString;
 const saltRounds = 12;
+var fs = require("fs");
 
 /////////////////////////Routing For Product APIs////////////////////////////////////////
 router.get("/", function (req, res) {
@@ -31,6 +33,21 @@ router.get("/cart/:id", function (req, res) {
     //console.log(err)
   })
 })
+/////////////////////////SHIPING/////////////////////////////////////
+router.post("/api/shipping",function(req,res){
+  var shippingRate = req.body
+  console.log('---------------SHIPPING')
+  var hbsObject = {
+    shipping: shippingRate
+  };
+  // console.log(hbsObject.products)
+  res.render("cart", hbsObject);
+});
+ /*  parseString(xml, function (err, result) {
+
+      console.dir(result);
+  }); */
+  
 /////////////////////////Routing For Customer APIs////////////////////////////////////////
 router.get("/api/customers/:id", function (req, res) {
   db.customer.findOne({
@@ -42,7 +59,7 @@ router.get("/api/customers/:id", function (req, res) {
   });
 });
 
-router.post("/api/customers", function (req, res) {
+router.get("/api/customers", function (req, res) {
   console.log('-----')
   console.log(req.body);
 

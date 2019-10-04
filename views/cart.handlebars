@@ -40,6 +40,7 @@
                         <div class="summary">
                             <h3>Summary</h3>
                             <h4><span class="text">Subtotal</span><span class="price">${{product.price}}</span></h4>
+                            <input hidden="hidden" id="productPrice" value="{{product.price}}">
                             <div class="row">
                                 <div class="col-md-3">
                                     <label>Address:</label>
@@ -71,9 +72,9 @@
                             </form>
 
                     <div id="result"></div>
-
-                            <h4><span class="text">Shipping</span><span class="price">$0</span></h4>
-                            <h4><span class="text">Total</span><span class="price">$360</span></h4><button
+                            <h4><span class="text">Shipping</span><span class="price shippingRate"></span></h4>
+                            <h4><span class="text">Tax</span><span class="price tax"></span></h4>
+                            <h4><span class="text">Total</span><span class="price total"></span></h4><button
                                 class="btn btn-primary btn-block btn-lg" type="button">Checkout</button>
                         </div>
                     </div>
