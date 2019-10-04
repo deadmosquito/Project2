@@ -2,7 +2,7 @@ var db = require("../models");
 var express = require('express');
 var router = express.Router();
 var bcrypt = require('bcrypt');
-var parseString = require('xml2js').parseString;
+//var parseString = require('xml2js').parseString;
 const saltRounds = 12;
 var fs = require("fs");
 
@@ -85,30 +85,45 @@ router.get("/api/customers", function (req, res) {
     });
   });
 });
+
 router.post('/api/customers/login', function (req, res) {
   db.customer.findOne({
     where: {
       email: req.body.email
     }
   }).then(function (results) {
-    if (!results) {
 
- console.log(results)
+    if (!results) {
  
       return res.json({
-       success: results
+       success: results,
        })
       
     } else {
       bcrypt.compare(req.body.userpassword, results.userpassword, function (err, result) {
+        console.log(results.id)
         return res.json({
-          success: result
+          
+          success: result,
+          id:results.id
         })
       });
     }
   });
 });
 
+router.get("/profile/:idd", function (req, res){
+  db.customer.findOne({
+    where: {
+      id: req.params.idd
+    }
+  }).then(function (dbCustomer) {
+    console.log(dbCustomer)
+    res.render("profile", dbCustomer);
+  });
+
+
+})
 router.delete("/api/customers/:id", function (req, res) {
   db.customer.destroy({
     where: {

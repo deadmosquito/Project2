@@ -2,20 +2,8 @@
 
     <div class="d-flex flex-column" id="content-wrapper">
         <div id="content">
-            <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
-                <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle mr-3"
-                        id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
-                    <form
-                        class="form-inline d-none d-sm-inline-block mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group"><input class="bg-light form-control border-0 small" type="text"
-                                placeholder="Search for ..." />
-
-                        </div>
-                    </form>
-
-                </div>
-            </nav>
-            <div class="container-fluid">
+           <br>
+            <div class="container-fluid" style="margin-top:100px;">
                 <h3 class="text-dark mb-4">Profile</h3>
                 <div class="row mb-3">
                     <div class="col-lg-4">
@@ -48,7 +36,7 @@
                                                 <div class="col">
                                                     <div class="form-group"><label for="email"><strong>Email
                                                                 Address</strong></label><input class="form-control"
-                                                            type="email" placeholder="user@example.com" name="email" />
+                                                            type="email" placeholder="{{dataValues.email}}" name="email" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -56,12 +44,12 @@
                                                 <div class="col">
                                                     <div class="form-group"><label for="first_name"><strong>First
                                                                 Name</strong></label><input class="form-control"
-                                                            type="text" placeholder="John" name="first_name" /></div>
+                                                            type="text" placeholder="{{dataValues.fname}}" name="first_name" />Alex</div>
                                                 </div>
                                                 <div class="col">
                                                     <div class="form-group"><label for="last_name"><strong>Last
                                                                 Name</strong></label><input class="form-control"
-                                                            type="text" placeholder="Doe" name="last_name" /></div>
+                                                            type="text" placeholder="{{dataValues.lname}}" name="last_name" /></div>
                                                 </div>
                                             </div>
                                             <div class="form-group"><button class="btn btn-primary btn-sm"
@@ -77,19 +65,19 @@
                                         <form>
                                             <div class="form-group"><label
                                                     for="address"><strong>Address</strong></label><input
-                                                    class="form-control" type="text" placeholder="Sunset Blvd, 38"
+                                                    class="form-control" type="text" placeholder="{{dataValues.address}}"
                                                     name="address" /></div>
                                             <div class="form-row">
                                                 <div class="col">
                                                     <div class="form-group"><label
                                                             for="city"><strong>City</strong></label><input
-                                                            class="form-control" type="text" placeholder="Los Angeles"
+                                                            class="form-control" type="text" placeholder="{{dataValues.city}}"
                                                             name="city" /></div>
                                                 </div>
                                                 <div class="col">
                                                     <div class="form-group"><label
                                                             for="country"><strong>Country</strong></label><input
-                                                            class="form-control" type="text" placeholder="USA"
+                                                            class="form-control" type="text" placeholder="{{dataValues.country}}"
                                                             name="country" /></div>
                                                 </div>
                                             </div>
