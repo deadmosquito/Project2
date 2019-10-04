@@ -4,4 +4,20 @@
 }
 .error {
 display: none;
+
+}
+.addToCartHome{
+    border: 1px solid navy;
+    padding:10px 15px;
+    color: navy;
+    border-radius: 5px;
+}
+.addToCartHome:hover{
+    background-color: navy;
+    color:white;
+    text-decoration: none;
+}
+.logo{
+    font-weight: bolder;
+
 }
