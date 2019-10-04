@@ -210,7 +210,7 @@ $(function () {
                     }
                 }
                 return obj;
-            };
+            }
             //var xmlToString = resultXLM.toString()
             // console.log(xmlToString)
             /* $.ajax("/api/shipping", {
