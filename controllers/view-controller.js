@@ -25,6 +25,10 @@ router.get("/register", function (req, res) {
   res.render('register');
 });
 
+router.get("/profile", function (req, res) {
+  res.render('profile');
+});
+
 router.get("/cart", function (req, res) {
   res.render('cart');
 });
