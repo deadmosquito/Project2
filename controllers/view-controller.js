@@ -25,7 +25,7 @@ router.get("/register", function (req, res) {
   res.render('register');
 });
 
-router.get("/profile", function (req, res) {
+router.get("/profile/:id", function (req, res) {
   res.render('profile');
 });
 
