@@ -59,7 +59,7 @@ router.get("/api/customers/:id", function (req, res) {
   });
 });
 
-router.get("/api/customers", function (req, res) {
+router.post("/api/customers", function (req, res) {
   console.log('-----')
   console.log(req.body);
 
