@@ -12,3 +12,6 @@
     * Routing
     * CRUD
 
+Check out the site here: https://deadmosquito.github.io/Project2/
+
+And the heroku here: https://project-2-ucla.herokuapp.com/
