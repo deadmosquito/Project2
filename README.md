@@ -9,7 +9,7 @@
     * Sequelize
     * Express
     * Handlebars
-    * Routing
+    * MySql
     * CRUD
 
 Check out the site here: https://deadmosquito.github.io/Project2/
